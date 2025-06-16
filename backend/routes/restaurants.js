@@ -1,3 +1,5 @@
+//from: University-Food/backend/routes/restaurants.js
+
 const express = require('express');
 const router = express.Router();
 const Restaurant = require('../models/Restaurant');
@@ -12,14 +14,24 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Add a new restaurant (for simplicity, no auth here, can be extended)
+// Add a new restaurant (no auth here, can be extended later)
 router.post('/', async (req, res) => {
-  const { name, providerType, description } = req.body;
-  if (!name || !providerType || !['university', 'student'].includes(providerType)) {
+  const { name, passwordHash, providerType, description } = req.body;
+
+  // Validate input
+  const validTypes = ['university', 'student', 'admin'];
+  if (!name || !passwordHash || !providerType || !validTypes.includes(providerType)) {
     return res.status(400).json({ message: 'Invalid data' });
   }
+
   try {
-    const restaurant = new Restaurant({ name, providerType, description });
+    const restaurant = new Restaurant({
+      name: name.trim(),
+      passwordHash,
+      providerType,
+      description: description?.trim() || ''
+    });
+
     await restaurant.save();
     res.status(201).json(restaurant);
   } catch (err) {

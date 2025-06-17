@@ -1,3 +1,4 @@
+//file: University-Food/backend/models/Restaurant.js
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 

@@ -11,7 +11,9 @@ const foodRoutes = require('./routes/foods');
 const cartRoutes = require('./routes/cart');
 const orderRoutes = require('./routes/orders');
 const deliveryRoutes = require('./routes/delivery');
-const adminRoutes = require('./routes/admin')
+const adminRoutes = require('./routes/admin');
+const restaurantDashboardRoutes = require('./routes/restaurantDashboard'); // Add this line
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -33,7 +35,7 @@ app.use('/api/cart', cartRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/delivery', deliveryRoutes);
 app.use('/api/admin', adminRoutes);
-
+app.use('/api/restaurant', restaurantDashboardRoutes); // Add this line
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

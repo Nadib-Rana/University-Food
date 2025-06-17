@@ -1,3 +1,5 @@
+// file: backend/models/FoodItem.js
+
 const mongoose = require('mongoose');
 
 const foodItemSchema = new mongoose.Schema({
@@ -8,8 +10,8 @@ const foodItemSchema = new mongoose.Schema({
   price: { type: Number, required: true },
   description: { type: String },
   stock: { type: Number, default: 0 },
-  createdAt: { type: Date, default: Date.now },
-  source : { type: String, enum: ['GUB', 'STU'], required: true }
+  source : { type: String, enum: ['GUB', 'STU','University','Student','External'] },
+ createdAt: { type: Date, default: Date.now }
 });
 
 module.exports = mongoose.model('FoodItem', foodItemSchema);

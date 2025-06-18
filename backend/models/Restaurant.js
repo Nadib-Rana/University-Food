@@ -13,7 +13,7 @@ const restaurantSchema = new mongoose.Schema({
   description: { type: String },
   staff: [{
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    role: { type: String, enum: ['manager', 'chef', 'cashier'], required: true }
+    role: { type: String, enum: ['manager', 'chef', 'cashier'] }
   }]
 }, { timestamps: true });
 

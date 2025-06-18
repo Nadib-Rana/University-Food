@@ -18,7 +18,7 @@ router.get('/:orderId/status', authMiddleware, async (req, res) => {
 
 // For demo: update delivery status (would be admin feature in real app)
 router.post('/:orderId/status', authMiddleware, async (req, res) => {
-  // For demo, allow any logged in user to update status
+  // allow any logged in user to update status
   const { status } = req.body;
   if (!['processing', 'delivered'].includes(status)) {
     return res.status(400).json({ message: 'Invalid status' });
